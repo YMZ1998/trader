@@ -1,0 +1,11 @@
+django
+mysqlclient
+django-choices
+ujson
+redis
+requests
+numpy
+pandas
+appdirs
+TA-Lib
+django-redis
