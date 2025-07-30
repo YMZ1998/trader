@@ -34,7 +34,6 @@ from panel.models import *
 logger = logging.getLogger('CTPApi')
 HANDLER_TIME_OUT = config.getint('TRADE', 'command_timeout', fallback=10)
 
-
 class TradeStrategy(BaseModule):
     def __init__(self, name: str):
         super().__init__()
@@ -42,6 +41,7 @@ class TradeStrategy(BaseModule):
         self.__trade_response_format = config.get('MSG_CHANNEL', 'trade_response_format')
         self.__request_format = config.get('MSG_CHANNEL', 'request_format')
         self.__ignore_inst_list = config.get('TRADE', 'ignore_inst', fallback="WH,bb,JR,RI,RS,LR,PM,im").split(',')
+
         self.__strategy = Strategy.objects.get(name=name)
         self.__inst_ids = self.__strategy.instruments.all().values_list('product_code', flat=True)
         self.__broker = self.__strategy.broker
