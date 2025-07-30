@@ -71,8 +71,12 @@ if not os.path.exists(config_file):
 config = configparser.ConfigParser(interpolation=None)
 config.read(config_file)
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+print("项目根目录为:", BASE_DIR)
+
 ctp_errors = {}
-ctp_xml_path = 'D:/github/trader/trader/utils/error.xml' if sys.platform == 'win32' \
-    else '/root/gitee/trader/trader/utils/error.xml'
+ctp_xml_path = os.path.join(BASE_DIR, 'utils/error.xml')
+print("ctp_xml_path:", ctp_xml_path)
 for error in ET.parse(ctp_xml_path).getroot():
     ctp_errors[int(error.attrib['value'])] = error.attrib['prompt']

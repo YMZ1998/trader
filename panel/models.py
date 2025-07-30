@@ -116,11 +116,13 @@ class Strategy(models.Model):
 
     def get_instruments(self):
         return [inst for inst in self.instruments.all()]
+
     get_instruments.short_description = '交易合约'
     get_instruments.allow_tags = True
 
     def get_force_opens(self):
         return [inst for inst in self.force_opens.all()]
+
     get_force_opens.short_description = '手动开仓'
     get_force_opens.allow_tags = True
 
@@ -274,10 +276,13 @@ class Trade(models.Model):
     shares = models.IntegerField('手数', null=True, blank=True)
     filled_shares = models.IntegerField('已成交手数', null=True, blank=True)
     closed_shares = models.IntegerField('已平仓手数', null=True, blank=True)
-    avg_entry_price = models.DecimalField(max_digits=12, decimal_places=3, verbose_name='持仓均价', null=True, blank=True)
-    avg_exit_price = models.DecimalField(max_digits=12, decimal_places=3, verbose_name='平仓均价', null=True, blank=True)
+    avg_entry_price = models.DecimalField(max_digits=12, decimal_places=3, verbose_name='持仓均价', null=True,
+                                          blank=True)
+    avg_exit_price = models.DecimalField(max_digits=12, decimal_places=3, verbose_name='平仓均价', null=True,
+                                         blank=True)
     profit = models.DecimalField(max_digits=12, decimal_places=3, verbose_name='持仓盈亏', null=True, blank=True)
-    frozen_margin = models.DecimalField(max_digits=12, decimal_places=3, verbose_name='冻结保证金', null=True, blank=True)
+    frozen_margin = models.DecimalField(max_digits=12, decimal_places=3, verbose_name='冻结保证金', null=True,
+                                        blank=True)
     cost = models.DecimalField(max_digits=12, decimal_places=2, verbose_name='手续费', null=True, blank=True)
 
     class Meta:
